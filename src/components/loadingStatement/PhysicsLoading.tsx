@@ -57,7 +57,7 @@ const PhysicsLoading: React.FC = () => (
         );
       })}
     </Box>
-=
+
   </Box>
 );
 
