@@ -1,9 +1,9 @@
 import React, { useMemo } from "react";
 import { AppBar, Toolbar, Box, Typography, Button, Container, Stack, Avatar } from "@mui/material";
 import SchoolIcon from "@mui/icons-material/School";
+import { useNavigate } from "react-router-dom";
 
 const Header: React.FC = () => {
-  // Get current date and time, update only on mount (static for header)
   const now = useMemo(() => {
     const d = new Date();
     return d.toLocaleString(undefined, {
@@ -15,6 +15,8 @@ const Header: React.FC = () => {
       hour12: true,
     });
   }, []);
+
+  const navigate = useNavigate();
 
   return (
     <AppBar
@@ -84,6 +86,7 @@ const Header: React.FC = () => {
                 transition: "all 0.3s",
                 backdropFilter: "blur(10px)",
               }}
+              onClick={() => navigate("/")}
             >
               Home
             </Button>
@@ -104,28 +107,9 @@ const Header: React.FC = () => {
                 transition: "all 0.3s",
                 backdropFilter: "blur(10px)",
               }}
+              onClick={() => navigate("/register-student")}
             >
-              About
-            </Button>
-            <Button
-              variant="outlined"
-              sx={{
-                color: "#fff",
-                borderColor: "rgba(255,255,255,0.5)",
-                fontWeight: 600,
-                px: 3,
-                borderRadius: 2,
-                background: "rgba(255,255,255,0.08)",
-                "&:hover": {
-                  background: "#fff",
-                  color: "#1e88e5",
-                  borderColor: "#fff",
-                },
-                transition: "all 0.3s",
-                backdropFilter: "blur(10px)",
-              }}
-            >
-              Contact
+              Register Students
             </Button>
           </Stack>
         </Container>
