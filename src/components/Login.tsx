@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Box, Button, TextField, Typography, Paper, Avatar } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import PhysicsLoading from './loadingStatement/PhysicsLoading.tsx';
+import ContentSection from './contentSection.tsx';
+import { BrowserRouter } from 'react-router-dom';
 
 const USERNAME = 'a';
 const PASSWORD = 'a';
@@ -11,6 +13,7 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,12 +22,21 @@ const Login: React.FC = () => {
       setLoading(true);
       setTimeout(() => {
         setLoading(false);
-        // ✅ Handle successful login here (e.g., navigate or update auth)
+        setLoggedIn(true);
       }, 2000);
     } else {
       setError('Invalid username or password');
     }
   };
+
+  if (loggedIn) {
+    // Wrap ContentSection in BrowserRouter to provide Router context
+    return (
+      <BrowserRouter>
+        <ContentSection />
+      </BrowserRouter>
+    );
+  }
 
   return (
     <Box
